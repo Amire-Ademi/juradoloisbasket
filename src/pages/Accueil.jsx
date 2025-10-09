@@ -263,7 +263,7 @@ function Accueil() {
                       position: "absolute",
                       top: "5%",
                       left: "50%",
-                      transform: "translateX(-80%)",
+                      transform: "translate(-50%, -50%)",
                       fontFamily: "Arial, sans-serif",
                       fontSize: "clamp(16px, 3vw, 32px)",
                       color: "#99CC66",
@@ -392,87 +392,120 @@ function Accueil() {
       <div className="container-fluid my-4 px-3">
         <div className="row g-4 justify-content-center align-items-stretch">
           <div className="col-12 d-flex justify-content-center">
-          <hr
-            style={{
-              border: "none",
-              height: "30px",
-              backgroundColor: "#99ea48ff",
-              flexGrow: 1,
-              alignSelf: "stretch",
-              margin: 0,
-            }}
-          />
-        </div>
-      </div>
-</div>
-{/* Soutenir */}
-<div className="container-fluid my-4 px-3">
-  <div className="row g-4 justify-content-center">
-    {/* Foto */}
-    <div className="col-12 col-md-6 d-flex justify-content-center">
-      <div style={{ padding: mediaPadding, width: "100%" }}>
-        <CadreWrapper>
-          <div style={{ position: "relative", width: "100%" }}>
-            <img
-              src={soutenir}
-              alt="Soutenir"
+            <hr
               style={{
-                width: "100%",
-                height: "auto",
-                maxHeight: "500px", // madhësia e fotos responsive si Trophee
-                objectFit: "contain",
-                display: "block",
+                border: "none",
+                height: "30px",
+                backgroundColor: "#99ea48ff",
+                flexGrow: 1,
+                alignSelf: "stretch",
+                margin: 0,
               }}
             />
-            {/* Mund të vendosësh titull mbi foto nëse do */}
-            {/* <h1 style={{position: "absolute", top: "5%", left: "50%", transform: "translateX(-50%)", ...}}>Votre titre</h1> */}
           </div>
-        </CadreWrapper>
-      </div>
-    </div>
-
-    {/* Teksti */}
-    <div className="col-12 col-md-6 d-flex justify-content-center">
-      <div style={{ padding: mediaPadding, width: "100%" }}>
-        <div
-          className="rounded w-100 h-100"
-          style={{
-            backgroundColor: "#000000",
-            overflowY: "auto",
-            padding: "1rem",
-          }}
-        >
-          <h3
-            style={{
-              fontFamily: "Arial",
-              fontWeight: "bold",
-              fontSize: "36px",
-              color: "#99CC66",
-              marginBottom: "1rem",
-            }}
-          >
-            Bénévoles et Partenaires
-          </h3>
-          <p style={{ fontFamily: "Arial", fontSize: "18px", color: "#99CC66" }}>
-            <strong>Bénévoles :</strong>
-            <br /><br />
-            Notre association sportive vit grâce à l’énergie et à l’engagement de ses bénévoles. Qu’il s’agit de nous aider à l’encadrement lors des entraînements ou des matchs, de soutenir nos équipes lors des compétitions ou de participer à la vie du club au quotidien, chaque coup de main est précieux et fait votre passion du sport et contribue à une belle aventure collective. N’hésitez pas à nous rejoindre.
-            <br /><br />
-            Pour toute information ou pour proposer votre aide, vous pouvez nous contacter au zéro6 cinq1 sept3 deux4 huit4.
-          </p>
-          <p style={{ fontFamily: "Arial, sans-serif", fontSize: "18px", color: "#99CC66" }}>
-            <strong>Partenaires / Donateurs :</strong>
-            <br /><br />
-            Nos partenaires / donateurs occupent une place essentielle dans la vie de notre association. Grâce à leur soutien, nous pouvons offrir de meilleures conditions d’entraînement à nos membres, organiser des événements, développer nos projets sportifs et acheter des tenues de match. Leur engagement à nos côtés contribue directement au dynamisme et à la réussite du Jura Dolois Basket (JDB).
-            <br /><br />
-            Si vous souhaitez associer votre image à notre aventure sportive et soutenir une initiative locale pleine d’énergie et de passion, nous serions ravis d’échanger avec vous. <br /><br />N’hésitez pas à nous contacter pour en savoir plus sur les différentes possibilités de partenariat.
-          </p>
         </div>
       </div>
-    </div>
-  </div>
-</div>
+      {/* Soutenir */}
+      <div className="container-fluid my-4 px-3">
+        <div className="row g-4 justify-content-center">
+          {/* Foto */}
+          <div className="col-12 col-md-6 d-flex justify-content-center">
+            <div style={{ padding: mediaPadding, width: "100%" }}>
+              <CadreWrapper>
+                <div style={{ position: "relative", width: "100%" }}>
+                  <img
+                    src={soutenir}
+                    alt="Soutenir"
+                    style={{
+                      width: "100%",
+                      height: "auto",
+                      maxHeight: "500px", // madhësia e fotos responsive si Trophee
+                      objectFit: "contain",
+                      display: "block",
+                    }}
+                  />
+                  {/* Mund të vendosësh titull mbi foto nëse do */}
+                  {/* <h1 style={{position: "absolute", top: "5%", left: "50%", transform: "translateX(-50%)", ...}}>Votre titre</h1> */}
+                </div>
+              </CadreWrapper>
+            </div>
+          </div>
 
+          {/* Teksti */}
+          <div className="col-12 col-md-6 d-flex justify-content-center">
+            <div style={{ padding: mediaPadding, width: "100%" }}>
+              <div
+                className="rounded w-100 h-100"
+                style={{
+                  backgroundColor: "#000000",
+                  overflowY: "auto",
+                  padding: "1rem",
+                }}
+              >
+                <h3
+                  style={{
+                    fontFamily: "Arial",
+                    fontWeight: "bold",
+                    fontSize: "36px",
+                    color: "#99CC66",
+                    marginBottom: "1rem",
+                  }}
+                >
+                  Bénévoles et Partenaires
+                </h3>
+                <p
+                  style={{
+                    fontFamily: "Arial",
+                    fontSize: "18px",
+                    color: "#99CC66",
+                  }}
+                >
+                  <strong>Bénévoles :</strong>
+                  <br />
+                  <br />
+                  Notre association sportive vit grâce à l’énergie et à
+                  l’engagement de ses bénévoles. Qu’il s’agit de nous aider à
+                  l’encadrement lors des entraînements ou des matchs, de
+                  soutenir nos équipes lors des compétitions ou de participer à
+                  la vie du club au quotidien, chaque coup de main est précieux
+                  et fait votre passion du sport et contribue à une belle
+                  aventure collective. N’hésitez pas à nous rejoindre.
+                  <br />
+                  <br />
+                  Pour toute information ou pour proposer votre aide, vous
+                  pouvez nous contacter au zéro6 cinq1 sept3 deux4 huit4.
+                </p>
+                <p
+                  style={{
+                    fontFamily: "Arial, sans-serif",
+                    fontSize: "18px",
+                    color: "#99CC66",
+                  }}
+                >
+                  <strong>Partenaires / Donateurs :</strong>
+                  <br />
+                  <br />
+                  Nos partenaires / donateurs occupent une place essentielle
+                  dans la vie de notre association. Grâce à leur soutien, nous
+                  pouvons offrir de meilleures conditions d’entraînement à nos
+                  membres, organiser des événements, développer nos projets
+                  sportifs et acheter des tenues de match. Leur engagement à nos
+                  côtés contribue directement au dynamisme et à la réussite du
+                  Jura Dolois Basket (JDB).
+                  <br />
+                  <br />
+                  Si vous souhaitez associer votre image à notre aventure
+                  sportive et soutenir une initiative locale pleine d’énergie et
+                  de passion, nous serions ravis d’échanger avec vous. <br />
+                  <br />
+                  N’hésitez pas à nous contacter pour en savoir plus sur les
+                  différentes possibilités de partenariat.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
