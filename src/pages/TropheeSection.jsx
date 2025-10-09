@@ -18,7 +18,7 @@ function TropheeSection() {
                   height: "auto",
                   maxHeight: "70vh",
                   objectFit: "cover",
-                  
+
                   display: "block",
                 }}
               />
@@ -27,7 +27,7 @@ function TropheeSection() {
               <h1
                 style={{
                   position: "absolute",
-                  top: "5%",
+                  top: "25%",
                   left: "50%",
                   transform: "translateX(-50%)",
                   fontFamily: "Arial, sans-serif",
