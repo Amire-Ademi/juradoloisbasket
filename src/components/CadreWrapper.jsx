@@ -4,34 +4,40 @@ import cadre from "../assets/cadre-vert.svg";
 function CadreWrapper({ children }) {
   return (
     <div
-      className="position-relative d-inline-block w-100"
+      className="position-relative mx-auto"
       style={{
-        maxWidth: "1000px", // rritet në desktop
-       
-        padding: "2vw", // responsive padding (ndryshon sipas ekranit)
-        backgroundColor: "transparent",
+        width: "100%",
+        maxWidth: "1000px",
+        aspectRatio: "16/9", // ruan raport konstant për kornizën
+        overflow: "visible",
       }}
     >
-      {/* Përmbajtja (video ose imazh) */}
+      {/* Fotoja ose përmbajtja */}
       <div
-        className="w-100 h-100"
+        className="position-relative w-100 h-100 overflow-hidden"
         style={{
-          
-          overflow: "hidden",
+          zIndex: 1,
         }}
       >
+        {/* Sigurohu që fotoja brenda ka width dhe height 100% */}
         {children}
       </div>
 
-      {/* Korniza SVG mbi media */}
+      {/* Korniza SVG pak jashtë fotos */}
       <img
         src={cadre}
         alt="Cadre vert"
-        className="position-absolute top-0 start-0 w-100 h-100"
+        className="position-absolute"
         style={{
+          top: "-2%", // del pak jashtë
+          left: "-2%",
+          right: "-2%",
+          bottom: "-2%",
+          width: "104%",
+          height: "104%",
+          objectFit: "contain", // ruan raportin e saktë të SVG-së
           pointerEvents: "none",
-          zIndex: 10,
-         
+          zIndex: 5,
         }}
       />
     </div>

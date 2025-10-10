@@ -4,45 +4,35 @@ import CadreWrapper from "../components/CadreWrapper";
 
 function TropheeSection() {
   return (
-    <section className="container-fluid my-5 px-4">
+    <section className="container my-5 px-3">
       <div className="row justify-content-center">
-        <div className="col-12 col-md-10 d-flex justify-content-center">
+        <div className="col-12 col-md-10">
           <CadreWrapper>
-            <div style={{ position: "relative", width: "100%" }}>
-              {/* Foto responsive */}
-              <img
-                src={trophe}
-                alt="Trophée"
-                style={{
-                  width: "100%",
-                  height: "auto",
-                  maxHeight: "70vh",
-                  objectFit: "cover",
+            <img
+              src={trophe}
+              alt="Trophée"
+              className="w-100 h-100"
+              style={{
+                objectFit: "cover",
+                display: "block",
+              }}
+            />
 
-                  display: "block",
-                }}
-              />
-
-              {/* Titulli mbi foto */}
-              <h1
-                style={{
-                  position: "absolute",
-                  top: "25%",
-                  left: "50%",
-                  transform: "translateX(-50%)",
-                  fontFamily: "Arial, sans-serif",
-                  fontWeight: "bold",
-                  fontSize: "clamp(16px, 3vw, 32px)",
-                  color: "#99CC66",
-                  zIndex: 11,
-                  textShadow: "2px 2px 6px rgba(0,0,0,0.7)",
-                  margin: 0,
-                  whiteSpace: "nowrap",
-                }}
-              >
-                ET DEMAIN S'ECRIRA AVEC VOUS
-              </h1>
-            </div>
+            <h1
+              className="position-absolute text-center fw-bold"
+              style={{
+                top: "25%",
+                left: "50%",
+                transform: "translateX(-50%)",
+                fontSize: "clamp(16px, 3vw, 32px)",
+                color: "#99CC66",
+                textShadow: "2px 2px 6px rgba(0,0,0,0.7)",
+                whiteSpace: "nowrap",
+                zIndex: 10, // mbi foton, por poshtë kornizës
+              }}
+            >
+              ET DEMAIN S'ECRIRA AVEC VOUS
+            </h1>
           </CadreWrapper>
         </div>
       </div>

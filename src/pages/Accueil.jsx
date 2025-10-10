@@ -240,37 +240,29 @@ function Accueil() {
               }}
             >
               <CadreWrapper>
-                <div
-                  style={{
-                    position: "relative",
-                    width: "100%",
-                    height: "100%", // marrë nga lartësia e kolonës
-                    display: "flex",
-                    alignItems: "stretch",
-                  }}
-                >
+                <div className="position-relative w-100 h-100">
                   <img
                     src={trophe}
                     alt="Trophée"
                     style={{
                       width: "100%",
-                      height: "100%", // barazon me tekstin
+                      height: "100%",
                       objectFit: "cover",
+                      display: "block",
                     }}
                   />
+
                   <h1
+                    className="position-absolute text-center fw-bold"
                     style={{
-                      position: "absolute",
-                      top: "5%",
+                      top: "3%",
                       left: "50%",
-                      transform: "translate(-50%, -50%)",
-                      fontFamily: "Arial, sans-serif",
+                      transform: "translateX(-50%)",
                       fontSize: "clamp(16px, 3vw, 32px)",
                       color: "#99CC66",
-                      zIndex: 11,
                       textShadow: "2px 2px 6px rgba(0,0,0,0.7)",
-                      margin: 0,
                       whiteSpace: "nowrap",
+                      zIndex: 11,
                     }}
                   >
                     ET DEMAIN S'ECRIRA AVEC VOUS
@@ -378,8 +370,9 @@ function Accueil() {
                     alt="Engagement Moral"
                     style={{
                       width: "100%",
-                      height: "100%",
+                      height: "130%",
                       objectFit: "cover",
+                      display: "block",
                     }}
                   />
                 </div>
@@ -418,12 +411,12 @@ function Accueil() {
                     alt="Soutenir"
                     style={{
                       width: "100%",
-                      height: "auto",
-                      maxHeight: "500px", // madhësia e fotos responsive si Trophee
-                      objectFit: "contain",
+                      height: "100%",
+                      objectFit: "cover",
                       display: "block",
                     }}
                   />
+
                   {/* Mund të vendosësh titull mbi foto nëse do */}
                   {/* <h1 style={{position: "absolute", top: "5%", left: "50%", transform: "translateX(-50%)", ...}}>Votre titre</h1> */}
                 </div>
@@ -473,7 +466,7 @@ function Accueil() {
                   <br />
                   <br />
                   Pour toute information ou pour proposer votre aide, vous
-                  pouvez nous contacter au zéro6 cinq1 sept3 deux4 huit4.
+                  pouvez nous contacter au 06.51.73.24.84
                 </p>
                 <p
                   style={{
