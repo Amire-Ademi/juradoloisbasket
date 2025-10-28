@@ -1,84 +1,150 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import logo from "../assets/logo.svg";
 import menuVert from "../assets/menu-vert.svg";
 
 function Header() {
+  const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const menuItems = [
+    "Accueil",
+    "Club",
+    "Les horaires",
+    "Nos gymnases",
+    "Nos équipes",
+    "Nos partenaires",
+    "BOUTIQUE",
+    "Contact",
+    "FAQ",
+  ];
 
   return (
     <header
-      className="d-flex justify-content-between align-items-center px-4"
       style={{
-        backgroundColor: "black",
-        height: "120px", // header më i lartë
+        position: "fixed",
+        top: 0,
+        left: 0,
+        right: 0,
+        width: "100%",
+        zIndex: 3000,
+        backgroundColor: "#000",
+        color: "#99CC66",
+        padding: "0.8rem 1.5rem",
+        boxShadow: "0 0 0 0 transparent",
+        display: "flex",
+
+        alignItems: "center",
+        justifyContent: "space-between",
+        gap: "2rem",
+        transform: "translateZ(0)",
+        willChange: "transform",
+        backfaceVisibility: "hidden",
       }}
     >
       {/* Logo majtas */}
-      <div className="d-flex align-items-center">
-        <img
-          src={logo}
-          alt="Jura Dolois Basket"
-          style={{ height: "100px" }} // logo më e madhe
-        />
-      </div>
+      <img
+        src={logo}
+        alt="Logo"
+        style={{ height: "90px", width: "auto", cursor: "pointer" }}
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+      />
 
-      {/* Slogani qendër */}
+      {/* Titulli në qendër */}
       <h2
-        className="text-success mb-0 text-center flex-grow-1"
-        style={{ fontSize: "28px", fontWeight: "bold" }} // slogani më i madh
+        style={{
+          margin: 0,
+          fontFamily: "Arial",
+          fontWeight: "bold",
+          color: "#99CC66",
+          fontSize: "36px",
+          position: "absolute",
+          left: "50%",
+          transform: "translateX(-50%)",
+        }}
       >
         Plus fort ensemble !
       </h2>
 
-      {/* Hamburger djathtas */}
       <div
-        style={{ cursor: "pointer", zIndex: 1001 }}
         onClick={() => setMenuOpen(!menuOpen)}
+        style={{
+          width: "70px",
+          height: "70px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          cursor: "pointer",
+          zIndex: 4001,
+        }}
       >
-        <img
-          src={menuVert}
-          alt="Menu"
-          style={{ height: "55px" }} // menu më e madhe
-        />
+        {!menuOpen ? (
+          <img
+            src={menuVert}
+            alt="Menu"
+            style={{ width: "100%", height: "100%" }}
+          />
+        ) : (
+          <span style={{ fontSize: "2.5rem", color: "#0f9138" }}>×</span>
+        )}
       </div>
 
-      {/* Sidebar menu */}
-      {menuOpen && (
-        <div
-          className="position-fixed top-0 end-0 h-100 bg-success text-white p-4"
-          style={{ width: "250px", zIndex: 1000 }}
+      {/* MENU BURGER */}
+      <motion.div
+        initial={{ x: "100%" }}
+        animate={{ x: menuOpen ? 0 : "100%" }}
+        transition={{ duration: 0.4, ease: "easeInOut" }}
+        style={{
+          position: "fixed",
+          top: 0,
+          right: 0,
+          width: "40%",
+          height: "100vh",
+          backgroundColor: "#f1e4e4",
+          zIndex: 4000,
+          display: "flex",
+          flexDirection: "column",
+          padding: "1.5rem 1.5rem",
+          boxShadow: "-5px 0 20px rgba(0,0,0,0.3)",
+        }}
+      >
+        <ul
+          style={{
+            listStyle: "none",
+            marginTop: "4rem",
+            padding: 0,
+            display: "flex",
+            flexDirection: "column",
+            width: "100%",
+          }}
         >
-          <h3>Menu</h3>
-          <ul className="list-unstyled">
-            <li>
-              <a href="#video" className="text-white">
-                Video
-              </a>
+          {menuItems.map((item, index) => (
+            <li
+              key={index}
+              style={{
+                borderBottom: "1px solid #ccc",
+                padding: "1rem 0",
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "center",
+                color: "#53a402ff",
+                fontWeight: "bold",
+                fontSize: "1.2rem",
+                cursor: "pointer",
+              }}
+            >
+              <span>{item}</span>
+              <span style={{ color: "#0f9138", fontSize: "1.4rem" }}>›</span>
             </li>
-            <li>
-              <a href="#inscription" className="text-white">
-                Inscription
-              </a>
-            </li>
-            <li>
-              <a href="#edito" className="text-white">
-                Edito
-              </a>
-            </li>
-            <li>
-              <a href="#trophe" className="text-white">
-                Trophée
-              </a>
-            </li>
-          </ul>
-          <button
-            className="btn btn-dark mt-3"
-            onClick={() => setMenuOpen(false)}
-          >
-            Fermer
-          </button>
-        </div>
-      )}
+          ))}
+        </ul>
+      </motion.div>
     </header>
   );
 }
