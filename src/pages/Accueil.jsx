@@ -52,7 +52,7 @@ function Header() {
         position: "fixed",
         top: 0,
         left: 0,
-        right: 0, // shto këtë
+        right: 0, 
         width: "100%",
         zIndex: 2000,
         backgroundColor: "#000000",
@@ -664,6 +664,10 @@ function Accueil() {
           </section>
         </ScrollSection>
       </main>
+      {/*<footer className="bg-black text-emerald-400 text-center py-6 mt-10">
+  <p className="text-sm sm:text-base">© {new Date().getFullYear()} Jura Dolois Basket — Tous droits réservés.</p>
+</footer>*/}
+
     </div>
   );
 }
