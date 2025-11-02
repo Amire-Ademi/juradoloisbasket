@@ -27,42 +27,20 @@ function Header() {
 
   const menuItems = ["edito", "engagement", "soutenir"];
 
-  const containerVariants = {
-    hidden: { opacity: 0, scaleY: 0, transformOrigin: "top" },
-    visible: {
-      opacity: 1,
-      scaleY: 1,
-      transformOrigin: "top",
-      transition: { staggerChildren: 0.1, duration: 0.3 },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: -20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.3, ease: "easeOut" },
-    },
-  };
-
   return (
     <header
       style={{
         position: "fixed",
         top: 0,
         left: 0,
-        right: 0, 
+        right: 0,
         width: "100%",
         zIndex: 2000,
-        backgroundColor: "#000000",
-        backdropFilter: "none",
+        backgroundColor: "#000",
         color: "#99CC66",
-        padding: "0.8rem 1.5rem",
-        boxShadow: "none",
-
+        padding: "0.6rem 1rem",
+        boxShadow: scrolled ? "0 2px 10px rgba(0,0,0,0.5)" : "none",
         transition: "all 0.3s ease",
-        borderBottom: "none", // opsionale
       }}
     >
       <div
@@ -70,59 +48,57 @@ function Header() {
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
+          position: "relative",
         }}
       >
         <img
           src={logo}
           alt="Jura Dolois Basket"
-          style={{
-            height: "45px",
-            width: "auto",
-            cursor: "pointer",
-            borderRadius: "6px",
-          }}
+          style={{ height: "40px", width: "auto", cursor: "pointer" }}
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         />
-
         <h2
           style={{
             fontFamily: "Arial",
             fontWeight: "bold",
             color: "#99CC66",
-            fontSize: "1.5rem",
-            margin: 0,
+            fontSize: "1.1rem",
             position: "absolute",
             left: "50%",
             transform: "translateX(-50%)",
+            margin: 0,
+            whiteSpace: "nowrap",
           }}
         >
-          Plus Fort ensemble !
+          Plus Fort Ensemble !
         </h2>
 
+        {/* Burger Menu */}
         <div
           onClick={() => setMenuOpen(!menuOpen)}
           style={{
-            width: "32px",
+            width: "28px",
             height: "22px",
             display: "flex",
             flexDirection: "column",
             justifyContent: "space-between",
             cursor: "pointer",
+            zIndex: 3001,
           }}
         >
           <span
             style={{
-              height: "4px",
+              height: "3px",
               width: "100%",
               backgroundColor: "#99CC66",
               borderRadius: "2px",
               transition: "0.3s",
-              transform: menuOpen ? "rotate(45deg) translateY(9px)" : "none",
+              transform: menuOpen ? "rotate(45deg) translateY(8px)" : "none",
             }}
           />
           <span
             style={{
-              height: "4px",
+              height: "3px",
               width: "100%",
               backgroundColor: "#99CC66",
               borderRadius: "2px",
@@ -132,41 +108,40 @@ function Header() {
           />
           <span
             style={{
-              height: "4px",
+              height: "3px",
               width: "100%",
               backgroundColor: "#99CC66",
               borderRadius: "2px",
               transition: "0.3s",
-              transform: menuOpen ? "rotate(-45deg) translateY(-9px)" : "none",
+              transform: menuOpen ? "rotate(-45deg) translateY(-8px)" : "none",
             }}
           />
         </div>
       </div>
 
+      {/* Menu Mobile */}
       <motion.nav
-        initial="hidden"
-        animate={menuOpen ? "visible" : "hidden"}
-        variants={containerVariants}
+        initial={{ opacity: 0, x: "100%" }}
+        animate={{ opacity: menuOpen ? 1 : 0, x: menuOpen ? 0 : "100%" }}
+        transition={{ duration: 0.3 }}
         style={{
-          position: "absolute",
-          top: "80px",
-          height: "500px",
-          width: " 300px",
-          right: "1.5rem",
+          position: "fixed",
+          top: 0,
+          right: 0,
+          height: "100vh",
+          width: "70%",
           backgroundColor: "#99CC66",
-          borderRadius: "5px",
-          overflow: "hidden",
-          padding: "1rem 2rem",
-          zIndex: 3000,
+          padding: "4rem 2rem",
           display: "flex",
           flexDirection: "column",
-          gap: "1rem",
+          gap: "1.5rem",
+          borderTopLeftRadius: "15px",
+          zIndex: 3000,
         }}
       >
         {menuItems.map((id) => (
-          <motion.a
+          <a
             key={id}
-            variants={itemVariants}
             href={`#${id}`}
             onClick={() => handleNavClick(id)}
             style={{
@@ -177,14 +152,30 @@ function Header() {
             }}
           >
             {id.charAt(0).toUpperCase() + id.slice(1)}
-          </motion.a>
+          </a>
         ))}
       </motion.nav>
+
+      {/* Mobile Styles */}
+      <style>
+        {`
+          @media (max-width: 480px) {
+            header {
+              padding: 0.5rem 1rem !important;
+            }
+            header h2 {
+              position: static !important;
+              transform: none !important;
+              font-size: 0.95rem !important;
+            }
+          }
+        `}
+      </style>
     </header>
   );
 }
 
-// --- Efekt animimi gjatë scroll-it ---
+// --- Scroll Animation ---
 const fadeUp = {
   hidden: { opacity: 0, y: 80 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
@@ -206,17 +197,15 @@ const ScrollSection = ({ children }) => {
   );
 };
 
-// --- Komponenti kryesor ---
+// --- Accueil ---
 function Accueil() {
   const mediaPadding = "2vw";
-
   const titleStyle = {
     fontFamily: "Arial, sans-serif",
     fontWeight: "bold",
     fontSize: "clamp(20px, 3vw, 36px)",
     color: "#99CC66",
   };
-
   const textGreen = {
     fontFamily: "Arial, sans-serif",
     textAlign: "justify",
@@ -224,49 +213,35 @@ function Accueil() {
     fontSize: "clamp(14px, 2vw, 18px)",
     color: "#99CC66",
   };
-
   const greenBg = { backgroundColor: "#99CC66" };
 
   return (
-    <div style={{ backgroundColor: "#000000", minHeight: "100vh" }}>
+    <div style={{ backgroundColor: "#000", minHeight: "100vh" }}>
       <Header />
-
-      <main
-        style={{
-          marginTop: "110px",
-          scrollBehavior: "smooth",
-        }}
-      >
-        {/* Seksioni Video */}
+      <main style={{ marginTop: "110px", scrollBehavior: "smooth" }}>
+        {/* Video Section */}
         <ScrollSection>
           <section className="container-fluid my-4 px-3">
             <div className="row g-4 justify-content-center">
-              {/* Video */}
               <div className="col-12 col-md-6 d-flex justify-content-center">
                 <div style={{ padding: mediaPadding, width: "100%" }}>
                   <CadreWrapper>
-                    <div
+                    <video
+                      src={video}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
                       style={{
-                        position: "relative",
                         width: "100%",
-                        aspectRatio: "16/9",
+                        height: "100%",
+                        objectFit: "cover",
                       }}
-                    >
-                      <video
-                        src={video}
-                        className="w-100 h-100"
-                        autoPlay
-                        loop
-                        muted
-                        playsInline
-                        style={{ objectFit: "cover" }}
-                      />
-                    </div>
+                    />
                   </CadreWrapper>
                 </div>
               </div>
 
-              {/* Infos */}
               <div className="col-12 col-md-6 d-flex justify-content-center">
                 <div style={{ padding: mediaPadding, width: "100%" }}>
                   <div
@@ -284,21 +259,20 @@ function Accueil() {
                   >
                     <h3
                       style={{
-                        fontFamily: "Arial, sans-serif",
+                        fontFamily: "Arial",
                         fontWeight: "bold",
                         fontSize: "36px",
-                        color: "#000000",
+                        color: "#000",
                         marginBottom: "1.5rem",
                       }}
                     >
                       Comment s’inscrire au Jura Dolois Basket
                     </h3>
-
                     <div
                       style={{
-                        fontFamily: "Arial, sans-serif",
+                        fontFamily: "Arial",
                         fontSize: "18px",
-                        color: "#000000",
+                        color: "#000",
                         lineHeight: "2.0",
                         textAlign: "left",
                         maxWidth: "90%",
@@ -333,44 +307,12 @@ function Accueil() {
                         enfants (répondre au questionnaire)
                       </p>
                       <p>
-                        Payer en ligne (aide financière le dire au point 2),
-                        facilite la gestion des licences, merci.
+                        Payer en ligne facilite la gestion des licences, merci.
                       </p>
                     </div>
                   </div>
                 </div>
               </div>
-              {/* Stil responsive për mobile */}
-              <style>
-                {`
-  @media (max-width: 768px) {
-    h3 {
-      font-size: 24px !important;
-      margin-bottom: 1rem !important;
-    }
-
-    div[style*="aspect-ratio"] {
-      padding: 1rem !important;
-      aspect-ratio: auto !important;
-    }
-
-    div[style*="font-size: 18px"] {
-      font-size: 16px !important;
-      line-height: 1.6 !important;
-    }
-  }
-
-  @media (max-width: 480px) {
-    h3 {
-      font-size: 20px !important;
-    }
-
-    div[style*="font-size: 18px"] {
-      font-size: 14px !important;
-    }
-  }
-  `}
-              </style>
             </div>
           </section>
         </ScrollSection>
@@ -390,7 +332,13 @@ function Accueil() {
                     }}
                   >
                     <h3 style={titleStyle}>Edito</h3>
-                    <p style={textGreen}>
+                    <p
+                      style={{
+                        fontFamily: "Arial",
+                        fontSize: "18px",
+                        color: "#99CC66",
+                      }}
+                    >
                       Porté par une équipe dirigeante dynamique, le Jura Dolois
                       Basket (JDB) s'engage activement dans le développement et
                       la promotion d'une image positive, en cultivant une
@@ -399,7 +347,14 @@ function Accueil() {
                       équipes féminines, Noir et Vert pour les équipes
                       masculines.
                     </p>
-                    <p style={textGreen}>
+                    <p
+                      style={{
+                        fontFamily: "Arial",
+                        fontSize: "18px",
+                        color: "#99CC66",
+                      }}
+                    >
+                      {" "}
                       Fort de son histoire, le Jura Dolois Basket a su obtenir
                       d'excellents résultats au fil des années et nous plaçons
                       la formation de nos jeunes talents au cœur de notre projet
@@ -408,7 +363,13 @@ function Accueil() {
                       sélection du Jura, témoignant du succès de notre travail
                       avec la relève.
                     </p>
-                    <p style={textGreen}>
+                    <p
+                      style={{
+                        fontFamily: "Arial",
+                        fontSize: "18px",
+                        color: "#99CC66",
+                      }}
+                    >
                       L’association « Jura Dolois Basket » est née en 2004 de la
                       fusion de deux associations emblématiques de
                       l’agglomération doloise : l’USTD Basket, basée à Tavaux,
@@ -416,25 +377,48 @@ function Accueil() {
                       Basket Club Dolois, située à Dole, qui accueillait les
                       jeunes de Dole et de ses alentours.
                     </p>
-                    <p style={textGreen}>
+                    <p
+                      style={{
+                        fontFamily: "Arial",
+                        fontSize: "18px",
+                        color: "#99CC66",
+                      }}
+                    >
+                      {" "}
                       Le Jura Dolois Basket dispose d'infrastructures sportives
                       situées dans l’agglomération du Grand Dole, avec les
                       rencontres à domicile qui se déroulent au gymnase Belvoye,
                       à Damparis.
                     </p>
-                    <p style={textGreen}>
+                    <p
+                      style={{
+                        fontFamily: "Arial",
+                        fontSize: "18px",
+                        color: "#99CC66",
+                      }}
+                    >
+                      {" "}
                       L’association Jura Dolois Basket incarne une véritable
                       communauté sportive unie autour de la passion du basket.
                       Intergénérationnelle, elle rassemble des équipes allant du
                       mini-basket aux équipes seniors.
                     </p>
-                    <p style={textGreen}>
+                    <p
+                      style={{
+                        fontFamily: "Arial",
+                        fontSize: "18px",
+                        color: "#99CC66",
+                      }}
+                    >
+                      {" "}
                       Aujourd'hui, ce sont plus de 250 licenciés qui font vivre
                       et vibrer l’association.
                     </p>
                   </div>
                 </div>
               </div>
+
+              {/* Image Trophee */}
 
               <div className="col-12 col-md-6 d-flex justify-content-center">
                 <div style={{ padding: mediaPadding, width: "100%" }}>
@@ -451,7 +435,7 @@ function Accueil() {
                         }}
                       />
                       <h1
-                        className="position-absolute text-center fw-bold"
+                        className="position-absolute text-center"
                         style={{
                           top: "3%",
                           left: "30%",
@@ -461,10 +445,25 @@ function Accueil() {
                           textShadow: "2px 2px 6px rgba(0,0,0,0.7)",
                           whiteSpace: "nowrap",
                           zIndex: 11,
+                          fontFamily: "Arial",
+                          fontWeight: "normal",
                         }}
                       >
                         ET DEMAIN S'ECRIRA AVEC VOUS
                       </h1>
+
+                      <style>
+                        {`
+    @media (max-width: 480px) {
+      .cadre-wrapper h1 {
+        top: 
+      2% !important;     /* më poshtë në mobile */
+        font-size: 14px !important;  /* më e vogël */
+        width: 58% !important;  /* kufizon që të mos dalë jashtë */
+      }
+    }
+  `}
+                      </style>
                     </div>
                   </CadreWrapper>
                 </div>
@@ -473,33 +472,22 @@ function Accueil() {
           </section>
         </ScrollSection>
 
-        {/* Separator */}
-        <div className="container-fluid my-4 px-3">
-          <hr
-            style={{
-              border: "none",
-              height: "30px",
-              backgroundColor: "#99CC66",
-
-              margin: "2rem 0",
-            }}
-          />
-        </div>
-
         {/* Engagement Moral */}
         <ScrollSection>
           <section id="engagement" className="container-fluid my-4 px-3">
             <div className="row g-4 justify-content-center">
               <div className="col-12 col-md-6 d-flex justify-content-center">
                 <div style={{ padding: mediaPadding, width: "100%" }}>
-                  <div
-                    style={{
-                      backgroundColor: "#000",
-                      padding: "1rem",
-                    }}
-                  >
+                  <div style={{ backgroundColor: "#000", padding: "1rem" }}>
                     <h3 style={titleStyle}>Engagement Moral</h3>
-                    <p style={textGreen}>
+
+                    <p
+                      style={{
+                        fontFamily: "Arial",
+                        fontSize: "18px",
+                        color: "#99CC66",
+                      }}
+                    >
                       <strong>Responsabilité :</strong>
                       <br />
                       Nous adoptons une approche globale du basket, qui intègre
@@ -508,8 +496,14 @@ function Accueil() {
                       aux règles d’arbitrage et aux comportements visant le bien
                       commun.
                     </p>
-
-                    <p style={textGreen}>
+                    <p
+                      style={{
+                        fontFamily: "Arial",
+                        fontSize: "18px",
+                        color: "#99CC66",
+                      }}
+                    >
+                      {" "}
                       <strong>Exemplarité :</strong>
                       <br />
                       Principe au cœur de notre charte, nous demandons à chacun
@@ -519,7 +513,13 @@ function Accueil() {
                       dirigeants/bénévoles, les autres joueurs, les spectateurs,
                       les partenaires, et le matériel.
                     </p>
-                    <p style={textGreen}>
+                    <p
+                      style={{
+                        fontFamily: "Arial",
+                        fontSize: "18px",
+                        color: "#99CC66",
+                      }}
+                    >
                       <strong>Formation :</strong>
                       <br />
                       Nos jeunes licenciés ne se forment pas seulement en tant
@@ -530,7 +530,14 @@ function Accueil() {
                       fautes commises, etc.) en tant que marqueur ou maîtriser
                       le temps de jeu en tant que chronométreur.
                     </p>
-                    <p style={textGreen}>
+                    <p
+                      style={{
+                        fontFamily: "Arial",
+                        fontSize: "18px",
+                        color: "#99CC66",
+                      }}
+                    >
+                      {" "}
                       <strong>Général :</strong>
                       <br />
                       Nous sommes engagés dans une démarche de responsabilité
@@ -561,24 +568,6 @@ function Accueil() {
           </section>
         </ScrollSection>
 
-        {/* Separator */}
-        <div className="container-fluid my-4 px-3">
-          <div className="row g-4 justify-content-center align-items-stretch">
-            <div className="col-12 d-flex justify-content-center">
-              <hr
-                style={{
-                  border: "none",
-                  height: "30px",
-                  backgroundColor: "#99CC66",
-                  flexGrow: 1,
-                  alignSelf: "stretch",
-                  margin: 0,
-                }}
-              />
-            </div>
-          </div>
-        </div>
-
         {/* Soutenir */}
         <ScrollSection>
           <section id="soutenir" className="container-fluid my-4 px-3">
@@ -600,13 +589,8 @@ function Accueil() {
               </div>
               <div className="col-12 col-md-6 d-flex justify-content-center">
                 <div style={{ padding: mediaPadding, width: "100%" }}>
-                  <div
-                    style={{
-                      backgroundColor: "#000",
-                      padding: "1rem",
-                    }}
-                  >
-                    <h3 style={titleStyle}>Bénévoles et Partenaires</h3>
+                  <div style={{ backgroundColor: "#000", padding: "1rem" }}>
+                    <h3 style={titleStyle}>Soutenir le Jura Basket</h3>
                     <p
                       style={{
                         fontFamily: "Arial",
@@ -664,10 +648,26 @@ function Accueil() {
           </section>
         </ScrollSection>
       </main>
-      {/*<footer className="bg-black text-emerald-400 text-center py-6 mt-10">
-  <p className="text-sm sm:text-base">© {new Date().getFullYear()} Jura Dolois Basket — Tous droits réservés.</p>
-</footer>*/}
 
+      {/* Media Query për CadreWrapper */}
+      <style>
+        {`
+          @media (max-width: 480px) {
+            .cadre-wrapper {
+              max-width: 320px;
+              max-height: 220px;
+              margin: 0 auto;
+            }
+            .cadre-wrapper img,
+            .cadre-wrapper video {
+              width: 100%;
+              height: 100%;
+              object-fit: cover;
+              display: block;
+            }
+          }
+        `}
+      </style>
     </div>
   );
 }
