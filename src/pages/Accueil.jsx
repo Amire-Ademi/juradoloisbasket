@@ -222,28 +222,52 @@ function Accueil() {
         {/* Video Section */}
         <ScrollSection>
           <section className="container-fluid my-4 px-3">
-            <div className="row g-4 justify-content-center">
-              <div className="col-12 col-md-6 d-flex justify-content-center">
-                <div style={{ padding: mediaPadding, width: "100%" }}>
+            <div className="row g-4 justify-content-center align-items-stretch">
+              {/* VIDEO */}
+              <div className="col-12 col-md-6 d-flex justify-content-center align-items-stretch">
+                <div
+                  style={{
+                    padding: mediaPadding,
+                    width: "100%",
+                    height: "100%",
+                  }}
+                >
                   <CadreWrapper>
-                    <video
-                      src={video}
-                      autoPlay
-                      loop
-                      muted
-                      playsInline
+                    <div
                       style={{
+                        position: "relative",
                         width: "100%",
                         height: "100%",
-                        objectFit: "cover",
+                        aspectRatio: "16/9",
                       }}
-                    />
+                    >
+                      <video
+                        src={video}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover",
+                          display: "block",
+                        }}
+                      />
+                    </div>
                   </CadreWrapper>
                 </div>
               </div>
 
-              <div className="col-12 col-md-6 d-flex justify-content-center">
-                <div style={{ padding: mediaPadding, width: "100%" }}>
+              {/* GREEN TEXT BOX */}
+              <div className="col-12 col-md-6 d-flex justify-content-center align-items-stretch">
+                <div
+                  style={{
+                    padding: mediaPadding,
+                    width: "100%",
+                    height: "100%",
+                  }}
+                >
                   <div
                     style={{
                       ...greenBg,
@@ -268,14 +292,15 @@ function Accueil() {
                     >
                       Comment s’inscrire au Jura Dolois Basket
                     </h3>
+
                     <div
                       style={{
                         fontFamily: "Arial",
                         fontSize: "18px",
                         color: "#000",
-                        lineHeight: "2.0",
-                        textAlign: "left",
-                        maxWidth: "90%",
+                        lineHeight: "1.5",
+                        textAlign: "justify",
+                        width: "100%",
                       }}
                     >
                       <p>
@@ -294,6 +319,7 @@ function Accueil() {
                         4°) Une fois votre licence validée par le club, vous
                         recevrez votre licence par mail
                       </p>
+
                       <hr
                         style={{
                           border: "none",
@@ -302,6 +328,7 @@ function Accueil() {
                           margin: "1.5rem 0",
                         }}
                       />
+
                       <p>
                         Le certificat médical n’est pas obligatoire chez les
                         enfants (répondre au questionnaire)
@@ -335,6 +362,7 @@ function Accueil() {
                     <p
                       style={{
                         fontFamily: "Arial",
+                        alignItems: "justify",
                         fontSize: "18px",
                         color: "#99CC66",
                       }}
@@ -366,6 +394,8 @@ function Accueil() {
                     <p
                       style={{
                         fontFamily: "Arial",
+                        alignItems: "justify",
+
                         fontSize: "18px",
                         color: "#99CC66",
                       }}
@@ -431,6 +461,8 @@ function Accueil() {
                           width: "100%",
                           height: "100%",
                           objectFit: "cover",
+                          lineHeight: "1.5",
+
                           display: "block",
                         }}
                       />
@@ -559,6 +591,7 @@ function Accueil() {
                         width: "100%",
                         height: "100%",
                         objectFit: "cover",
+                        lineHeight: "1.5",
                       }}
                     />
                   </CadreWrapper>
@@ -650,23 +683,197 @@ function Accueil() {
       </main>
 
       {/* Media Query për CadreWrapper */}
+      {/* Responsive Styles */}
       <style>
         {`
-          @media (max-width: 480px) {
-            .cadre-wrapper {
-              max-width: 320px;
-              max-height: 220px;
-              margin: 0 auto;
-            }
-            .cadre-wrapper img,
-            .cadre-wrapper video {
-              width: 100%;
-              height: 100%;
-              object-fit: cover;
-              display: block;
-            }
-          }
-        `}
+/* --- Për mobile shumë të vogël (≤380px) --- */
+@media (max-width: 380px) {
+  /* Header responsive */
+  header,
+  .navbar,
+  .navbar-container {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 0.5rem 1rem !important;
+    background-color: #000 !important;
+  }
+
+  /* Logo */
+  header img,
+  .navbar-logo img {
+    width: 50px !important;
+    height: auto !important;
+  }
+
+  /* Titulli (p.sh. “Plus fort ensemble !”) */
+  header h1,
+  header h2,
+  header p {
+    font-size: 14px !important;
+    color: #99CC66 !important;
+    text-align: center !important;
+    margin: 0 !important;
+    flex: 1;
+  }
+
+  /* Butoni i menusë (hamburger) */
+  .menu-button,
+  .navbar-toggler {
+    width: 28px !important;
+    height: 28px !important;
+    background: none !important;
+    border: none !important;
+    color: #99CC66 !important;
+    font-size: 24px !important;
+    margin-left: 0.5rem !important;
+  }
+
+  /* Mos lejo që elementi i header-it të dalë jashtë */
+  header * {
+    max-width: 100% !important;
+  }
+
+  /* --- Video dhe përmbajtje --- */
+  .cadre-wrapper {
+    width: 95% !important;
+    aspect-ratio: 16 / 9;
+    margin: 0 auto !important;
+  }
+
+  .cadre-wrapper img,
+  .cadre-wrapper video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Tekstet në seksionet e tjera */
+  h3,
+  p {
+    font-size: 14px !important;
+    text-align: justify !important;
+    line-height: 1.4 !important;
+  }
+
+  /* Teksti mbi foto “ET DEMAIN S’ECRIRA AVEC VOUS” */
+  h1 {
+    font-size: 14px !important;
+    top: 8% !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    width: 90% !important;
+    text-align: center !important;
+    white-space: normal !important;
+    line-height: 1.3 !important;
+  }
+
+  /* Heq çdo vijë ose hapësirë që krijon border */
+  .row.g-4 {
+    --bs-gutter-x: 0 !important;
+    --bs-gutter-y: 0 !important;
+  }
+
+  .col-12.col-md-6 {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .col-12.col-md-6 > div {
+    border: none !important;
+    padding: 0 !important;
+  }
+
+  hr {
+    display: none !important;
+  }
+
+  .container-fluid {
+    background-color: #000 !important;
+  }
+}
+
+
+    /* --- Për tablet (≤834px) --- */
+    @media (max-width: 834px) {
+      .cadre-wrapper {
+        width:100% !important;
+        aspect-ratio: 16 / 9;
+        margin: 0 auto;
+      }
+      .cadre-wrapper img,
+      .cadre-wrapper video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      h3, p {
+        font-size: 16px !important;
+        text-align: justify !important;
+      }
+      h1 {
+        font-size: 18px !important;
+        top: 5% !important;
+      }
+      section.container-fluid {
+        padding: 1rem !important;
+      }
+    }
+
+    /* --- Për desktop standard (≤1280px) --- */
+    @media (max-width: 1280px) {
+      .cadre-wrapper {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+      .cadre-wrapper img,
+      .cadre-wrapper video {
+        object-fit: cover;
+      }
+      h3, p {
+        font-size: 17px;
+        text-align: justify;
+      }
+      h1 {
+        font-size: 22px;
+      }
+    }
+
+    /* --- Për ekrane të mëdhenj (≤1600px) --- */
+    @media (max-width: 1600px) {
+      .cadre-wrapper {
+        max-width: 1000px;
+        margin: 0 auto;
+      }
+      .cadre-wrapper img,
+      .cadre-wrapper video {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      h3, p {
+        font-size: 18px;
+        text-align: justify;
+      }
+      h1 {
+        font-size: 26px;
+      }
+    }
+
+    /* --- Për ekrane më të mëdhenj se 1600px --- */
+    @media (min-width: 1601px) {
+      .cadre-wrapper {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      h3, p {
+        font-size: 24px;
+        text-align: justify;
+      }
+    }
+  `}
       </style>
     </div>
   );
