@@ -504,6 +504,25 @@ function Accueil() {
           </section>
         </ScrollSection>
 
+
+
+{/* HR Full Width 
+<div style={{ width: "100vw", position: "relative", left: "36%", marginLeft: "-35vw" }}>
+  <hr
+    style={{
+      border: 0,
+      height: "30px",
+      background: "#99CC66",
+      width: "95%",
+      margin: "2rem"
+    }}
+  />
+</div>*/}
+{/* HR Full Width */}
+<div className="full-width-hr">
+  <hr />
+</div>
+
         {/* Engagement Moral */}
         <ScrollSection>
           <section id="engagement" className="container-fluid my-4 px-3">
@@ -601,6 +620,25 @@ function Accueil() {
           </section>
         </ScrollSection>
 
+
+
+
+{/* HR Full Width 
+<div style={{ width: "100vw", position: "relative", left: "36%", marginLeft: "-35vw" }}>
+  <hr
+    style={{
+      border: 0,
+      height: "30px",
+      background: "#99CC66",
+      width: "95%",
+      margin: "2rem"
+    }}
+  />
+</div>*/}
+{/* HR Full Width */}
+<div className="full-width-hr">
+  <hr />
+</div>
         {/* Soutenir */}
         <ScrollSection>
           <section id="soutenir" className="container-fluid my-4 px-3">
@@ -692,10 +730,10 @@ function Accueil() {
   header,
   .navbar,
   .navbar-container {
-    display: flex !important;
-    flex-direction: row !important;
-    justify-content: space-between !important;
-    align-items: center !important;
+  display: flex;
+  flex-direction: column;
+    justify-content: center;
+    align-items: center;
     padding: 0.5rem 1rem !important;
     background-color: #000 !important;
   }

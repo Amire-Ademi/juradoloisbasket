@@ -23,16 +23,31 @@ a:hover {
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  background-color: #000;
 }
-
+body, html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+}
+.full-width-hr {
+  width: 100vw;
+  position: relative;
+  left: 36%;
+  margin-left: -35vw;
+  padding: 0;
+}
+
+.full-width-hr hr {
+  height: 30px;           /* trashësia */
+  background: #99CC66;   /* ngjyra */
+  border: none;
+  margin: 2rem 0;        /* distanca lart & poshtë */
+  width: 100%;
 }
 
 button {
