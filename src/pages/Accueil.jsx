@@ -911,6 +911,42 @@ function Accueil() {
         text-align: justify;
       }
     }
+      
+@media (min-width: 1024px) {
+
+  /* Imazhet dhe videot e seksionit Accueil */
+  .cadre-wrapper,
+  .cadre-wrapper img,
+  .cadre-wrapper video {
+    width: 700px !important;
+    max-width: 700px !important;
+    height: auto !important;
+    object-fit: cover !important;
+    display: block !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+
+  /* Tekstet — gjithmonë e njëjta madhësi */
+  h3 {
+    font-size: 32px !important;
+    font-weight: 700 !important;
+    line-height: 1.3 !important;
+    color: #fff !important;
+  }
+
+  p {
+    font-size: 20px !important;
+    line-height: 1.6 !important;
+    color: #ddd !important;
+  }
+
+  /* Kolonat e majta/djathta */
+  .container-fluid .row .col-12.col-md-6 > div {
+    max-width: 700px !important;
+    margin: 0 auto !important;
+  }
+}
   `}
       </style>
     </div>
