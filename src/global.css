@@ -1,24 +1,19 @@
-/* ----- DESKTOP FIX UNIVERSAL ----- */
 @media (min-width: 1024px) {
-  /* Foto + video madhësi fikse */
-  .cadre-wrapper,
   .cadre-wrapper img,
   .cadre-wrapper video,
-  img,
-  video {
+  .image-wrapper img {
     width: 550px !important;
     height: auto !important;
     object-fit: cover !important;
   }
 
-  /* Tekst madhësi fikse */
-  h1,
-  h2,
-  h3 {
+  .text h2 {
     font-size: 32px !important;
+    line-height: 1.3 !important;
   }
 
-  p {
+  .text p {
     font-size: 18px !important;
+    line-height: 1.6 !important;
   }
 }
