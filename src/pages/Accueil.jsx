@@ -900,6 +900,7 @@ function Accueil() {
       }
     }
 
+    
     /* --- Për ekrane më të mëdhenj se 1600px --- */
     @media (min-width: 1601px) {
       .cadre-wrapper {
