@@ -929,7 +929,7 @@ function Accueil() {
 
   /* Tekstet — gjithmonë e njëjta madhësi */
   h3 {
-    font-size: 32px !important;
+    font-size: 24px !important;
     font-weight: 700 !important;
     line-height: 1.3 !important;
     color: #fff !important;
@@ -943,7 +943,7 @@ function Accueil() {
 
   /* Kolonat e majta/djathta */
   .container-fluid .row .col-12.col-md-6 > div {
-    max-width: 700px !important;
+    max-width: 500px !important;
     margin: 0 auto !important;
   }
 }
