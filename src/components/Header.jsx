@@ -19,228 +19,208 @@ function Header() {
   ];
 
   return (
-    <>
-      <header className="header">
-        {/* Logo majtas */}
-        <img src={logo} className="logo" alt="logo" />
+    <header className="header">
+      {/* ======================================
+                 DESKTOP HEADER
+      ======================================= */}
+      <div className="desktop-header">
+        <img src={logo} alt="Logo" className="header-logo" />
 
-        {/* Teksti qendër vizuale */}
-        <h2 className="title">Plus fort ensemble !</h2>
+        <h2 className="header-title">Plus fort ensemble !</h2>
 
-        {/* Desktop menu */}
         <nav className="desktop-nav">
           {menuItems.map((item, i) => (
-            <span key={i} className="nav-item">
-              {item}
-            </span>
+            <span key={i} className="nav-item">{item}</span>
           ))}
         </nav>
+      </div>
 
-        {/* Burger per mobile */}
-        <div className="burger" onClick={() => setMenuOpen(true)}>
-          <img src={menuVert} className="burger-icon" alt="Menu" />
+      {/* ======================================
+                 MOBILE HEADER
+      ======================================= */}
+      <div className="mobile-header">
+        <img src={logo} alt="Logo" className="header-logo" />
+
+        <h2 className="header-title">Plus fort ensemble !</h2>
+
+        <div className="burger" onClick={() => setMenuOpen(!menuOpen)}>
+          {!menuOpen ? (
+            <img src={menuVert} alt="Menu" />
+          ) : (
+            <span className="close-x">×</span>
+          )}
         </div>
-      </header>
+      </div>
 
-      {/* Mobile menu fullscreen */}
+      {/* ======================================
+                   BURGER MENU PANEL
+      ======================================= */}
       <motion.div
+        className="mobile-menu-panel"
         initial={{ x: "100%" }}
         animate={{ x: menuOpen ? 0 : "100%" }}
-        transition={{ duration: 0.35 }}
-        className="mobile-panel"
+        transition={{ duration: 0.4 }}
       >
-        <span className="mobile-close" onClick={() => setMenuOpen(false)}>
-          ×
-        </span>
-
-        {menuItems.map((item, i) => (
-          <div key={i} className="mobile-item">
-            {item}
-          </div>
-        ))}
+        <ul className="mobile-menu-list">
+          {menuItems.map((item, i) => (
+            <li key={i} className="mobile-menu-item">
+              <span>{item}</span>
+              <span className="arrow">›</span>
+            </li>
+          ))}
+        </ul>
       </motion.div>
 
-      {/* CSS */}
+      {/* ======================================
+                     CSS STYLE
+      ======================================= */}
       <style>{`
-      /* ===========================
-        BASE HEADER STYLE
-=========================== */
-.header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 90px;
-  background: #000;
-  color: #99CC66;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: nowrap;        /* SHUMË E RËNDËSISHME */
-  padding: 0 20px;
-  z-index: 3000;
-}
+        /* ------------ GENERAL ------------ */
+        .header {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          z-index: 3000;
+          background: #000;
+          padding: 0.5rem 1.5rem;
+        }
 
-.logo {
-  height: 70px;
-  flex-shrink: 0;           /* MOS LEJO ZVOGËLIM */
-}
+        .header-logo {
+          height: 70px;
+          cursor: pointer;
+        }
 
-.title {
-  flex: 1;                  /* ZGJERIM MIDIS LOGO & BURGER */
-  text-align: center;
-  margin: 0 15px;
-  font-size: 28px;
-  font-weight: bold;
-  color: #99CC66;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;  /* MOS U ZHDUK TEKSTI */
-  min-width: 0;
-}
+        .header-title {
+          font-family: Arial;
+          font-weight: bold;
+          color: #99CC66;
+          white-space: nowrap;
+        }
 
-.desktop-nav {
-  display: flex;
-  gap: 25px;
-}
+        /* ------------ DESKTOP HEADER ------------ */
+        .desktop-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+        }
 
-.nav-item {
-  cursor: pointer;
-  font-weight: bold;
-  transition: 0.3s;
-}
-.nav-item:hover { color: #66ff66; }
+        .desktop-nav {
+          display: flex;
+          gap: 1.5rem;
+        }
 
-.burger {
-  display: none;
-  width: 55px;
-  height: 55px;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  flex-shrink: 0;
-}
+        .nav-item {
+          font-weight: bold;
+          color: #99CC66;
+          cursor: pointer;
+          transition: 0.2s;
+        }
 
-.burger-icon { width: 100%; }
+        .nav-item:hover {
+          color: #66ff66;
+        }
 
+        /* ------------ MOBILE HEADER ------------ */
+        .mobile-header {
+          display: none;
+          grid-template-columns: 1fr auto 1fr;
+          align-items: center;
+          text-align: center;
+        }
 
-/* ===========================
-        MOBILE MENU
-=========================== */
-.mobile-panel { position: fixed; top: 0; right: 0; width: 70%; height: 100%; background: #f1e4e4; z-index: 4000; padding-top: 80px; }
+        .burger {
+          width: 60px;
+          height: 60px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+        }
 
-.mobile-item { padding: 20px; font-size: 20px; border-bottom: 1px solid #ccc; color: #0f9138; font-weight: bold; }
+        .close-x {
+          font-size: 3rem;
+          color: #0f9138;
+        }
 
-.mobile-close { position: absolute; top: 15px; right: 20px; font-size: 3rem; color: #0f9138; font-weight: bold; cursor: pointer; z-index: 5000; }
+        /* ------------ MOBILE MENU ------------ */
+        .mobile-menu-panel {
+          position: fixed;
+          top: 0;
+          right: 0;
+          width: 60%;
+          height: 100vh;
+          background: #f1e4e4;
+          z-index: 4000;
+          padding: 2rem 1.5rem;
+        }
 
+        .mobile-menu-list {
+          list-style: none;
+          padding: 0;
+          margin-top: 3rem;
+        }
 
-/* ===========================
-       BREAKPOINT 0–380px
-=========================== */
-@media (max-width: 380px) {
+        .mobile-menu-item {
+          display: flex;
+          justify-content: space-between;
+          border-bottom: 1px solid #ccc;
+          padding: 1rem 0;
+          font-size: 1.3rem;
+          font-weight: bold;
+          color: #0f9138;
+        }
 
-  .header {
-    height: 70px;
-    padding: 0 10px;
-  }
+        .arrow {
+          font-size: 1.5rem;
+        }
 
-  .logo { height: 35px; }
+        /* ------------ RESPONSIVE BREAKPOINTS ------------ */
 
-  .title {
-    font-size: 14px;
-    margin: 0 5px;
-  }
+        /* DESKTOP MODE */
+        @media (min-width: 1024px) {
+          .mobile-header,
+          .mobile-menu-panel {
+            display: none;
+          }
 
-  .burger {
-    display: flex;
-    width: 32px;
-    height: 32px;
-  }
+          .header-title {
+            font-size: 32px;
+          }
+        }
 
-  .desktop-nav { display: none; }
-}
+        /* MOBILE MODE */
+        @media (max-width: 1023px) {
+          .desktop-header {
+            display: none;
+          }
 
+          .mobile-header {
+            display: grid;
+          }
 
-/* ===========================
-      BREAKPOINT 381px–843px
-=========================== */
-@media (min-width: 381px) and (max-width: 843px) {
+          .header-title {
+            font-size: 20px;
+          }
 
-  .logo { height: 50px; }
+          .header-logo {
+            height: 55px;
+          }
+        }
 
-  .title {
-    font-size: 20px;
-    margin: 0 10px;
-  }
+        /* VERY SMALL SCREENS */
+        @media (max-width: 380px) {
+          .header-title {
+            font-size: 16px !important;
+          }
 
-  .burger {
-    display: flex;
-    width: 40px;
-    height: 40px;
-  }
-
-  .desktop-nav { display: none; }
-}
-
-
-/* ===========================
-      BREAKPOINT 844px–1024px
-=========================== */
-@media (min-width: 844px) and (max-width: 1024px) {
-
-  .logo { height: 55px; }
-
-  .title { font-size: 22px; }
-
-  .burger {
-    display: flex;
-    width: 45px;
-    height: 45px;
-  }
-
-  .desktop-nav { display: none; }
-}
-
-
-/* ===========================
-     DESKTOP SMALL 1025–1280px
-=========================== */
-@media (min-width: 1025px) and (max-width: 1280px) {
-  .logo { height: 60px; }
-  .title { font-size: 24px; }
-  .burger { display: none; }
-  .desktop-nav { display: flex; }
-}
-
-
-/* ===========================
-     DESKTOP MEDIUM 1281–1600px
-=========================== */
-@media (min-width: 1281px) and (max-width: 1600px) {
-  .logo { height: 70px; }
-  .title { font-size: 28px; }
-}
-
-
-/* ===========================
-     DESKTOP LARGE 1601–2400px
-=========================== */
-@media (min-width: 1601px) and (max-width: 2400px) {
-  .logo { height: 85px; }
-  .title { font-size: 34px; }
-}
-
-
-/* ===========================
-          ULTRAWIDE 2400px+
-=========================== */
-@media (min-width: 2401px) {
-  .logo { height: 100px; }
-  .title { font-size: 40px; }
-}
-
+          .burger {
+            width: 50px;
+            height: 50px;
+          }
+        }
       `}</style>
-    </>
+    </header>
   );
 }
 
